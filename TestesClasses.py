@@ -1,5 +1,6 @@
 import unittest
 import RelatorioEmprestimos
+from UsuariosMaisAtivos import UsuariosMaisAtivos
 
 class TestRelatorioEmprestimos(unittest.TestCase):
 
@@ -31,6 +32,21 @@ class TestRelatorioEmprestimos(unittest.TestCase):
         # Espera-se: Clean Code (2), Design Patterns (1), Python Fluente (1)
         self.assertEqual(resultado[0][0], "Clean Code")
         self.assertEqual(resultado[0][1], 2)
+
+
+
+
+
+
+class TestUsuariosMaisAtivos(unittest.TestCase):
+
+    def setup(self):
+        self.usuarios = UsuariosMaisAtivos()
+
+    def test_listarUsuarios(self):
+        result = self.usuarios
+        self.assertEquals(result, 0)
+
 
 
 if __name__ == '__main__':

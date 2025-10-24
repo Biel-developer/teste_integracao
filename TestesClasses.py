@@ -47,6 +47,10 @@ class TestUsuariosMaisAtivos(unittest.TestCase):
         result = self.usuarios
         self.assertEquals(result, 0)
 
+    def listarUsuariosMaisAtivos(self):
+        result = self.usuarios
+        self.assertEquals(result, 0)
+
 
 
 if __name__ == '__main__':

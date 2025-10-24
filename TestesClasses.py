@@ -1,8 +1,8 @@
 import unittest
-<<<<<<< HEAD
+
 import RelatorioEmprestimos
 from RelatorioUsuariosMaisAtivos import UsuariosMaisAtivos
-=======
+
 
 
 class RelatorioEmprestimos:
@@ -16,19 +16,21 @@ class RelatorioEmprestimos:
         lista_ordenada = sorted(self.emprestimos.items(), key=lambda item: item[1], reverse=True)
         return lista_ordenada
 
-class UsuariosMaisAtivos:
-    LIMITE_MINIMO_ATIVIDADE = 2 
-    def __init__(self, emprestimos):
-        self.emprestimos = emprestimos
-    def listarUsuarios(self):
-        return len(self.emprestimos)
-    def listarUsuariosMaisAtivos(self):
-        filtrados = {
-            user: count for user, count in self.emprestimos.items() 
-            if count > self.LIMITE_MINIMO_ATIVIDADE
-        }
-        ordenados = sorted(filtrados.items(), key=lambda item: item[1], reverse=True)
-        return dict(ordenados)
+class TestUsuariosMaisAtivos(unittest.TestCase):
+
+    def setup(self):
+        emprestimos = {"user1": 40, "user2": 22, "user3": 7, "user4": 67,
+                       "user5": 9, "user6": 2, "user7": 94, "user8": 2000020, "user9": 93}
+        self.usuarios = UsuariosMaisAtivos(emprestimos)
+
+    def test_listarUsuarios(self):
+        result = self.usuarios.listarUsuarios()
+        self.assertEquals(result, 9)
+
+    def test_listarUsuariosMaisAtivos(self):
+        result = self.usuarios.listarUsuariosMaisAtivos(8)
+        self.assertEquals(result, {'user8': 2000020, 'user7': 94, 'user9': 93,
+                                   'user4': 67, 'user1': 40, 'user2': 22, 'user5': 9, 'user3': 7})
 
 class GeradorRelatorioMensal:
     def __init__(self, dados):

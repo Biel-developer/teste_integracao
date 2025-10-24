@@ -49,7 +49,6 @@ class GeradorRelatorioMensal:
         return "\n".join(linhas_relatorio)
 
 # --- TESTES (Referenciam as classes acima) ---
->>>>>>> 053f149dfc52c1a1e909d74913f426553b00a355
 
 class TestRelatorioEmprestimos(unittest.TestCase):
 

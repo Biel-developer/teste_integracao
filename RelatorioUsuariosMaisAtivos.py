@@ -15,5 +15,3 @@ class UsuariosMaisAtivos:
 
         usuarios_mais_ativos = dict(usuarios_ordenados[:limite])
         return usuarios_mais_ativos
-
-

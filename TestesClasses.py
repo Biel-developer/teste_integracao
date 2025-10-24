@@ -1,6 +1,6 @@
 import unittest
 import RelatorioEmprestimos
-from UsuariosMaisAtivos import UsuariosMaisAtivos
+from RelatorioUsuariosMaisAtivos import UsuariosMaisAtivos
 
 class TestRelatorioEmprestimos(unittest.TestCase):
 

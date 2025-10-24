@@ -1,29 +1,46 @@
 import unittest
 
+
 class RelatorioEmprestimos:
     def __init__(self):
-        pass
+        self.emprestimos = {}
     def adicionar_emprestimo(self, livro):
-        pass
+        self.emprestimos[livro] = self.emprestimos.get(livro, 0) + 1
     def total_emprestimos(self, livro):
-        return 0
+        return self.emprestimos.get(livro, 0)
     def gerar_relatorio(self):
-        return []
+        lista_ordenada = sorted(self.emprestimos.items(), key=lambda item: item[1], reverse=True)
+        return lista_ordenada
 
 class UsuariosMaisAtivos:
+    LIMITE_MINIMO_ATIVIDADE = 2 
     def __init__(self, emprestimos):
-        self.emprestimos = {}
+        self.emprestimos = emprestimos
     def listarUsuarios(self):
-        return 0
+        return len(self.emprestimos)
     def listarUsuariosMaisAtivos(self):
-        return {}
+        filtrados = {
+            user: count for user, count in self.emprestimos.items() 
+            if count > self.LIMITE_MINIMO_ATIVIDADE
+        }
+        ordenados = sorted(filtrados.items(), key=lambda item: item[1], reverse=True)
+        return dict(ordenados)
 
 class GeradorRelatorioMensal:
     def __init__(self, dados):
         self.dados_mensais = dados
         self.meses_ordenados = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"]
     def gerar_relatorio_texto(self):
-        return ""
+        linhas_relatorio = []
+        linhas_relatorio.append("--- Relatório Mensal: Empréstimos e Devoluções ---")
+        for mes in self.meses_ordenados:
+            if mes in self.dados_mensais:
+                dados = self.dados_mensais[mes]
+                linhas_relatorio.append(f"\n{mes}:")
+                linhas_relatorio.append(f"  Devoluções: {dados['devoluções']}")
+                linhas_relatorio.append(f"  Empréstimos: {dados['emprestimos']}")
+        linhas_relatorio.append("\nRelatório gerado.")
+        return "\n".join(linhas_relatorio)
 
 # --- TESTES (Referenciam as classes acima) ---
 
@@ -66,12 +83,10 @@ class TestUsuariosMaisAtivos(unittest.TestCase):
         self.usuarios = UsuariosMaisAtivos(emprestimos)
 
     def test_listarUsuarios(self):
-        result = self.usuarios.listarUsuarios()
-        self.assertEqual(result, 9)
+        self.assertEqual(self.usuarios.listarUsuarios(), 9)
 
     def test_listarUsuariosMaisAtivos(self):
-        result = self.usuarios.listarUsuariosMaisAtivos()
-        self.assertEqual(result, {'user8': 2000020, 'user7': 94, 'user9': 93, 
+        self.assertEqual(self.usuarios.listarUsuariosMaisAtivos(), {'user8': 2000020, 'user7': 94, 'user9': 93, 
                                      'user4': 67, 'user1': 40, 'user2': 22, 'user5': 9, 'user3': 7})
 
 class TestGeradorRelatorioMensal(unittest.TestCase):

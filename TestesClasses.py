@@ -41,15 +41,18 @@ class TestRelatorioEmprestimos(unittest.TestCase):
 class TestUsuariosMaisAtivos(unittest.TestCase):
 
     def setup(self):
-        self.usuarios = UsuariosMaisAtivos()
+        emprestimos = {"user1": 40, "user2": 22, "user3": 7, "user4": 67, 
+                       "user5": 9, "user6": 2, "user7": 94, "user8": 2000020, "user9": 93}
+        self.usuarios = UsuariosMaisAtivos(emprestimos)
 
     def test_listarUsuarios(self):
-        result = self.usuarios
-        self.assertEquals(result, 0)
+        result = self.usuarios.listarUsuarios()
+        self.assertEquals(result, 9)
 
-    def listarUsuariosMaisAtivos(self):
-        result = self.usuarios
-        self.assertEquals(result, 0)
+    def test_listarUsuariosMaisAtivos(self):
+        result = self.usuarios.listarUsuariosMaisAtivos()
+        self.assertEquals(result, {'user8': 2000020, 'user7': 94, 'user9': 93, 
+                                   'user4': 67, 'user1': 40, 'user2': 22, 'user5': 9, 'user3': 7})
 
 
 

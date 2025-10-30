@@ -7,37 +7,65 @@ Sistema desenvolvido com metodologia TDD (Test-Driven Development) para geraçã
 
 # 🧩 Frontend 
 📦 projeto/
+
 ┣ 📂 tests → Testes automatizados
+
 ┣ 📂 .next → Build gerado automaticamente pelo Next.js (não editar)
+
 ┣ 📂 app → Páginas e rotas principais da aplicação
+
 ┣ 📂 components → Componentes reutilizáveis da interface (botões, cards, etc.)
+
 ┣ 📂 hooks → Hooks personalizados (lógica reutilizável do React)
+
 ┣ 📂 lib → Funções utilitárias e configurações auxiliares
+
 ┣ 📂 node_modules → Dependências instaladas (gerado automaticamente)
+
 ┣ 📂 public → Imagens, ícones e outros arquivos públicos
+
 ┣ 📂 styles → Arquivos de estilo global e configurações do Tailwind
+
 ┣ 📜 .gitignore → Arquivos e pastas ignorados pelo Git
+
 ┣ 📜 components.json → Configuração dos componentes (usado por algumas libs)
+
 ┣ 📜 jest.config.js → Configuração dos testes com Jest
+
 ┣ 📜 next-env.d.ts → Tipagens padrão do Next.js
+
 ┣ 📜 next.config.mjs → Configurações gerais do Next.js
+
 ┣ 📜 package-lock.json → Controle de versões das dependências (gerado pelo npm)
+
 ┣ 📜 package.json → Lista de dependências e scripts do projeto
+
 ┣ 📜 pnpm-lock.yaml → Controle de dependências (se estiver usando pnpm)
+
 ┣ 📜 postcss.config.mjs → Configuração do PostCSS (usado pelo Tailwind)
+
 ┣ 📜 README.md → Documento explicativo do projeto
+
 ┣ 📜 tsconfig.json → Configuração do TypeScript
 
 
 ## 🐍 Backend
 📦 projeto/
+
 ┣ 📂 pycache → Arquivos compilados automaticamente pelo Python
+
 ┣ 📂 .idea → Configurações do ambiente (PyCharm / VSCode)
+
 ┣ 📜 api.py → Arquivo principal da API (ponto de entrada do servidor Flask)
+
 ┣ 📜 GeradorRelatorioMensal.py → Classe que gera relatórios mensais
+
 ┣ 📜 RelatorioEmprestimos.py → Classe que lida com os relatórios de empréstimos
+
 ┣ 📜 RelatorioEmprestimosRefac.py → Versão refatorada do relatório de empréstimos
+
 ┣ 📜 RelatorioUsuariosMaisAtivos.py→ Classe que gera relatório dos usuários mais ativos
+
 ┣ 📜 TestesClasses.py → Testes unitários das classes principais
 
 

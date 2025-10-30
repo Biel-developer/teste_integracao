@@ -70,7 +70,8 @@ Sistema desenvolvido com metodologia TDD (Test-Driven Development) para geraçã
 
 ## Python
 inicializar o arquivo do python é só colocar no terminal
-# py api.py
+
+┣ py api.py
 
 
 ## Funcionalidades

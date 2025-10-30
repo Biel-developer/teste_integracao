@@ -8,7 +8,7 @@ export function MostBorrowedBooks() {
   const [data, setData] = useState<{ titulo: string; emprestimos: number }[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/relatorio/livros")
+    fetch("http://localhost:5000/api/livros")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.error("Erro ao carregar livros:", err));

@@ -1,0 +1,58 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from RelatorioEmprestimos import RelatorioEmprestimos
+from RelatorioUsuariosMaisAtivos import UsuariosMaisAtivos
+from GeradorRelatorioMensal import GeradorRelatorioMensal
+
+app = Flask(__name__)
+CORS(app)
+
+# rota para gerar relatório de empréstimos
+@app.route('/api/relatorio', methods=['POST'])
+def gerar_relatorio():
+    dados = request.json  # dados enviados do Next.js
+    emprestimos = RelatorioEmprestimos()
+
+    for titulo in dados.get('titulos', []):
+        emprestimos.adicionar_emprestimo(titulo)
+
+    resultado = emprestimos.gerar_relatorio()
+    return jsonify(resultado)
+
+# rota para usuários mais ativos (POST)
+@app.route('/api/usuarios', methods=['POST'])
+def usuarios_ativos():
+    dados = request.json
+    usuarios = UsuariosMaisAtivos(dados['emprestimos'])
+    limite = dados.get('limite', len(dados['emprestimos']))
+    resultado = usuarios.listarUsuariosMaisAtivos(limite)
+    return jsonify(resultado)
+
+# ✅ nova rota para /api/relatorio/livros (corrige erro 404 dos livros)
+@app.route('/api/relatorio/livros', methods=['GET'])
+def relatorio_livros():
+    livros = [
+        {"titulo": "Dom Casmurro", "emprestimos": 45},
+        {"titulo": "O Cortiço", "emprestimos": 38},
+        {"titulo": "1984", "emprestimos": 35},
+        {"titulo": "A Revolução dos Bichos", "emprestimos": 32},
+        {"titulo": "Memórias Póstumas", "emprestimos": 28},
+        {"titulo": "Grande Sertão: Veredas", "emprestimos": 25}
+    ]
+    return jsonify(livros)
+
+# ✅ nova rota para /api/relatorio/usuarios (corrige erro 404 dos usuários)
+@app.route('/api/relatorio/usuarios', methods=['GET'])
+def relatorio_usuarios():
+    usuarios = [
+        {"nome": "Maria Silva", "emprestimos": 23, "categoria": "Ouro"},
+        {"nome": "João Santos", "emprestimos": 19, "categoria": "Ouro"},
+        {"nome": "Ana Costa", "emprestimos": 17, "categoria": "Prata"},
+        {"nome": "Pedro Oliveira", "emprestimos": 15, "categoria": "Prata"},
+        {"nome": "Carla Souza", "emprestimos": 13, "categoria": "Bronze"},
+        {"nome": "Lucas Ferreira", "emprestimos": 12, "categoria": "Bronze"},
+    ]
+    return jsonify(usuarios)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)

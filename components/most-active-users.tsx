@@ -1,38 +1,41 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
+"use client";
 
-const users = [
-  { nome: "Maria Silva", emprestimos: 23, categoria: "Ouro" },
-  { nome: "João Santos", emprestimos: 19, categoria: "Ouro" },
-  { nome: "Ana Costa", emprestimos: 17, categoria: "Prata" },
-  { nome: "Pedro Oliveira", emprestimos: 15, categoria: "Prata" },
-  { nome: "Carla Souza", emprestimos: 13, categoria: "Bronze" },
-  { nome: "Lucas Ferreira", emprestimos: 12, categoria: "Bronze" },
-]
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 function getInitials(name: string) {
   return name
     .split(" ")
     .map((n) => n[0])
     .join("")
-    .toUpperCase()
+    .toUpperCase();
 }
 
 function getCategoryColor(categoria: string) {
   switch (categoria) {
     case "Ouro":
-      return "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400"
+      return "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400";
     case "Prata":
-      return "bg-gray-500/10 text-gray-700 dark:text-gray-400"
+      return "bg-gray-500/10 text-gray-700 dark:text-gray-400";
     case "Bronze":
-      return "bg-orange-500/10 text-orange-700 dark:text-orange-400"
+      return "bg-orange-500/10 text-orange-700 dark:text-orange-400";
     default:
-      return "bg-muted text-muted-foreground"
+      return "bg-muted text-muted-foreground";
   }
 }
 
 export function MostActiveUsers() {
+  const [users, setUsers] = useState<{ nome: string; emprestimos: number; categoria: string }[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/relatorio/usuarios")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((err) => console.error("Erro ao carregar usuários:", err));
+  }, []);
+
   return (
     <Card>
       <CardHeader>
@@ -61,5 +64,5 @@ export function MostActiveUsers() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,0 +1,14 @@
+# Node / Next.js
+node_modules
+.next
+pnpm-lock.yaml
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema / IDE
+.idea
+.vscode
+.DS_Store

@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # rota para gerar relatório de empréstimos
-@app.route('/api/relatorio', methods=['POST'])
+@app.route('/api', methods=['POST'])
 def gerar_relatorio():
     dados = request.json  # dados enviados do Next.js
     emprestimos = RelatorioEmprestimos()
@@ -28,8 +28,8 @@ def usuarios_ativos():
     resultado = usuarios.listarUsuariosMaisAtivos(limite)
     return jsonify(resultado)
 
-# ✅ nova rota para /api/relatorio/livros (corrige erro 404 dos livros)
-@app.route('/api/relatorio/livros', methods=['GET'])
+# ✅ nova rota para /api/livros (corrige erro 404 dos livros)
+@app.route('/api/livros', methods=['GET'])
 def relatorio_livros():
     livros = [
         {"titulo": "Dom Casmurro", "emprestimos": 45},
@@ -42,7 +42,7 @@ def relatorio_livros():
     return jsonify(livros)
 
 # ✅ nova rota para /api/relatorio/usuarios (corrige erro 404 dos usuários)
-@app.route('/api/relatorio/usuarios', methods=['GET'])
+@app.route('/api/usuarios', methods=['GET'])
 def relatorio_usuarios():
     usuarios = [
         {"nome": "Maria Silva", "emprestimos": 23, "categoria": "Ouro"},

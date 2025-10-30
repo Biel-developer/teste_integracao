@@ -7,10 +7,9 @@ from GeradorRelatorioMensal import GeradorRelatorioMensal
 app = Flask(__name__)
 CORS(app)
 
-# rota para gerar relatório de empréstimos
 @app.route('/api', methods=['POST'])
 def gerar_relatorio():
-    dados = request.json  # dados enviados do Next.js
+    dados = request.json 
     emprestimos = RelatorioEmprestimos()
 
     for titulo in dados.get('titulos', []):
@@ -19,7 +18,7 @@ def gerar_relatorio():
     resultado = emprestimos.gerar_relatorio()
     return jsonify(resultado)
 
-# rota para usuários mais ativos (POST)
+
 @app.route('/api/usuarios', methods=['POST'])
 def usuarios_ativos():
     dados = request.json
@@ -28,7 +27,7 @@ def usuarios_ativos():
     resultado = usuarios.listarUsuariosMaisAtivos(limite)
     return jsonify(resultado)
 
-# ✅ nova rota para /api/livros (corrige erro 404 dos livros)
+
 @app.route('/api/livros', methods=['GET'])
 def relatorio_livros():
     livros = [
@@ -41,7 +40,7 @@ def relatorio_livros():
     ]
     return jsonify(livros)
 
-# ✅ nova rota para /api/relatorio/usuarios (corrige erro 404 dos usuários)
+
 @app.route('/api/usuarios', methods=['GET'])
 def relatorio_usuarios():
     usuarios = [

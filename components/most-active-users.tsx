@@ -30,7 +30,7 @@ export function MostActiveUsers() {
   const [users, setUsers] = useState<{ nome: string; emprestimos: number; categoria: string }[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/relatorio/usuarios")
+    fetch("http://localhost:5000/api/usuarios")
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((err) => console.error("Erro ao carregar usuários:", err));

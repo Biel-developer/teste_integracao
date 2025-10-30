@@ -68,6 +68,10 @@ Sistema desenvolvido com metodologia TDD (Test-Driven Development) para geraçã
 
 ┣ 📜 TestesClasses.py → Testes unitários das classes principais
 
+##Python
+inicializar o arquivo do python é só colocar no terminal
+#py api.py
+
 
 ## Funcionalidades
 
